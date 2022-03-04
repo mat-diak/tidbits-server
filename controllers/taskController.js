@@ -8,7 +8,6 @@ const User = require("../models/userModel");
 const getTasks = asyncHandler(async (req, res) => {
   // this req.user.id is accessbile due to the middleware, finds tasks of only the specific user
   const tasks = await Task.find({ user: req.user.id });
-  console.log("req user id...", req.user.id);
   res.status(200).json(tasks);
 });
 
@@ -20,7 +19,6 @@ const createTask = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("Please add a text field");
   }
-  console.log("req 2, user id...", req.user.id);
   const task = await Task.create({
     text: req.body.text,
     user: req.user.id,
@@ -39,6 +37,21 @@ const updateTask = asyncHandler(async (req, res) => {
     throw new Error("Task not found");
   }
 
+  // find user making request to update and assign as user
+  const user = await User.findById(req.user.id);
+
+  // check for user if its an existing user in our database, if not:
+  if (!user) {
+    res.status(401);
+    throw new Error("User not found");
+  }
+
+  // check if the user from our middleware protect, is the same as our task updating user
+  if (task.user.toString() !== user.id) {
+    res.status(401);
+    throw new Error("User not authorised");
+  }
+
   const updatedTask = await Task.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   });
@@ -54,6 +67,17 @@ const deleteTask = asyncHandler(async (req, res) => {
   if (!task) {
     res.status(400);
     throw new Error("Task not found");
+  }
+  // check for user if its an existing user in our database
+  if (!user) {
+    res.status(401);
+    throw new Error("User not found");
+  }
+
+  // check if the user matches the task. Make sure the logged in user matches the task user
+  if (task.user.toString() !== user.id) {
+    res.status(401);
+    throw new Error("User not authorised");
   }
 
   await task.remove(req.params.id);
