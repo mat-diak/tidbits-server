@@ -1,30 +1,32 @@
 const asyncHandler = require("express-async-handler");
 
 const Task = require("../models/taskModel");
+const User = require("../models/userModel");
 
 // @desc Get tasks
 // @route GET /api/tasks
 const getTasks = asyncHandler(async (req, res) => {
   // this req.user.id is accessbile due to the middleware, finds tasks of only the specific user
   const tasks = await Task.find({ user: req.user.id });
-
-  res.json(tasks);
+  console.log("req user id...", req.user.id);
+  res.status(200).json(tasks);
 });
 
 // @desc Create tasks
 // @route POST /api/tasks
+
 const createTask = asyncHandler(async (req, res) => {
   if (!req.body.text) {
     res.status(400);
     throw new Error("Please add a text field");
   }
-
+  console.log("req 2, user id...", req.user.id);
   const task = await Task.create({
     text: req.body.text,
     user: req.user.id,
   });
 
-  res.json(task);
+  res.status(200).json(task);
 });
 
 // @desc Update task

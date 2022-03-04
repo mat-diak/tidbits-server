@@ -12,10 +12,10 @@ const { protect } = require("../middleware/authMiddleware");
 // add protect before every route to protect it
 router.get("/", protect, getTasks);
 
-router.post("/", createTask);
+router.post("/", protect, createTask);
 
-router.put("/:id", updateTask);
+router.put("/:id", protect, updateTask);
 
-router.delete("/:id", deleteTask);
+router.delete("/:id", protect, deleteTask);
 
 module.exports = router;
