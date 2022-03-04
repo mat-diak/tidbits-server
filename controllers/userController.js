@@ -32,11 +32,13 @@ const registerUser = asyncHandler(async (req, res) => {
     password: hashedPassword,
   });
 
+  // note generate token
   if (user) {
     res.status(201).json({
       _id: user.id,
       name: user.name,
       email: user.email,
+      token: generateToken(user._id),
     });
   } else {
     res.status(400);
@@ -58,6 +60,7 @@ const loginUser = asyncHandler(async (req, res) => {
       _id: user.id,
       name: user.name,
       email: user.email,
+      token: generateToken(user._id),
     });
   } else {
     res.status(400);
@@ -68,9 +71,18 @@ const loginUser = asyncHandler(async (req, res) => {
 // get current login user. We send token with that
 // @desc      Get user data
 // @route     GET /api/users/me
-// @access    Public
+// @access    Private
+// we use this to protect our routes, by creating custom middleware
+
 const getMe = asyncHandler(async (req, res) => {
   res.json({ message: "User display data" });
 });
+
+// Generate JWToken
+
+const generateToken = (id) => {
+  // this signs a new token, with the secret used, expires in 30 days
+  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "30d" });
+};
 
 module.exports = { registerUser, loginUser, getMe };
