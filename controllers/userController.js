@@ -72,10 +72,16 @@ const loginUser = asyncHandler(async (req, res) => {
 // @desc      Get user data
 // @route     GET /api/users/me
 // @access    Private
-// we use this to protect our routes, by creating custom middleware
+// we use this to protect our routes, by creating custom middleware.
 
 const getMe = asyncHandler(async (req, res) => {
-  res.json({ message: "User display data" });
+  const { _id, name, email } = await User.findById(req.user.id);
+
+  res.status(200).json({
+    id: _id,
+    name,
+    email,
+  });
 });
 
 // Generate JWToken
