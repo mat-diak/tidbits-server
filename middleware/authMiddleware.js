@@ -19,8 +19,7 @@ const protect = asyncHandler(async (req, res, next) => {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
       // get user from the token and assign to req.user so we can access it in any route thats protected
-      req.user = await User.findOne(decoded.id).select("-password");
-
+      req.user = await User.findById(decoded.id).select("-password");
       next();
     } catch (error) {
       console.log(error);

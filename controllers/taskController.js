@@ -19,11 +19,12 @@ const createTask = asyncHandler(async (req, res) => {
     throw new Error("Please add a text field");
   }
 
-  const goal = await Task.create({
+  const task = await Task.create({
     text: req.body.text,
+    user: req.user.id,
   });
 
-  res.json(goal);
+  res.json(task);
 });
 
 // @desc Update task
@@ -33,14 +34,14 @@ const updateTask = asyncHandler(async (req, res) => {
 
   if (!task) {
     res.status(400);
-    throw new Error("Goal not found");
+    throw new Error("Task not found");
   }
 
-  const updatedGoal = await Task.findByIdAndUpdate(req.params.id, req.body, {
+  const updatedTask = await Task.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   });
 
-  res.json(updatedGoal);
+  res.json(updatedTask);
 });
 
 // @desc Delete task
@@ -50,7 +51,7 @@ const deleteTask = asyncHandler(async (req, res) => {
 
   if (!task) {
     res.status(400);
-    throw new Error("Goal not found");
+    throw new Error("Task not found");
   }
 
   await task.remove(req.params.id);
