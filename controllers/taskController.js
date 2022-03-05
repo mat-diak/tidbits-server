@@ -19,13 +19,15 @@ const createTask = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("Please add a text field");
   }
+
   const task = await Task.create({
     text: req.body.text,
-    user: req.user.id,
-  });
+    targetReps: req.body.targetReps,
+    completedReps: req.body.completedReps
+  })
 
-  res.status(200).json(task);
-});
+  res.json(task)
+})
 
 // @desc Update task
 // @route PUT /api/tasks/:id

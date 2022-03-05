@@ -7,14 +7,20 @@ const taskSchema = mongoose.Schema(
       required: true,
       ref: "User",
     },
-    text: {
-      type: String,
-      required: [true, "Please add a text value"],
-    },
+  text: {
+    type: String,
+    required: [true, 'Please add a text value']
   },
-  {
-    timestamps: true,
-  }
-);
+  targetReps: {
+    type: Number,
+    required: [true, 'Please add targetReps']
+  },
+  completedReps: {
+    type: Number,
+    required: [true, 'Please add completedReps']
+  },
+}, {
+  timestamps: true,
+})
 
 module.exports = mongoose.model("Task", taskSchema);
