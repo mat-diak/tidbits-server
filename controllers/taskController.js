@@ -23,7 +23,8 @@ const createTask = asyncHandler(async (req, res) => {
   const task = await Task.create({
     text: req.body.text,
     targetReps: req.body.targetReps,
-    completedReps: req.body.completedReps
+    completedReps: req.body.completedReps,
+    user: req.user.id
   })
 
   res.json(task)
@@ -70,6 +71,11 @@ const deleteTask = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("Task not found");
   }
+
+  // find user making request to update and assign as user
+  const user = await User.findById(req.user.id);
+
+  
   // check for user if its an existing user in our database
   if (!user) {
     res.status(401);
