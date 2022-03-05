@@ -6,7 +6,7 @@ const Task = require('../models/taskModel')
 // @route GET /api/tasks
 const getTasks = asyncHandler(async (req, res) => {
   const tasks = await Task.find()
-  
+
   res.json(tasks)
 })
 
@@ -19,7 +19,9 @@ const createTask = asyncHandler(async (req, res) => {
   }
 
   const task = await Task.create({
-    text: req.body.text
+    text: req.body.text,
+    targetReps: req.body.targetReps,
+    completedReps: req.body.completedReps
   })
 
   res.json(task)
