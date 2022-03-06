@@ -5,7 +5,6 @@ const User = require("../models/userModel");
 //
 const protect = asyncHandler(async (req, res, next) => {
   let token;
-
   // First check for authorization header by making sure token starts with Barer
   if (
     req.headers.authorization &&

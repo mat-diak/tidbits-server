@@ -50,7 +50,7 @@ const registerUser = asyncHandler(async (req, res) => {
 // @access    Public
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
-
+  
   // check for user email
   const user = await User.findOne({ email });
 
@@ -74,13 +74,7 @@ const loginUser = asyncHandler(async (req, res) => {
 // we use this to protect our routes, by creating custom middleware.
 
 const getMe = asyncHandler(async (req, res) => {
-  const { _id, name, email } = await User.findById(req.user.id);
-
-  res.status(200).json({
-    id: _id,
-    name,
-    email,
-  });
+  res.status(200).json(req.user);
 });
 
 // Generate JWToken

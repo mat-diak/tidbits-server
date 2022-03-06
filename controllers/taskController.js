@@ -40,17 +40,14 @@ const updateTask = asyncHandler(async (req, res) => {
     throw new Error("Task not found");
   }
 
-  // find user making request to update and assign as user
-  const user = await User.findById(req.user.id);
-
   // check for user if its an existing user in our database, if not:
-  if (!user) {
+  if (!req.user) {
     res.status(401);
     throw new Error("User not found");
   }
 
   // check if the user from our middleware protect, is the same as our task updating user
-  if (task.user.toString() !== user.id) {
+  if (task.user.toString() !== req.user.id) {
     res.status(401);
     throw new Error("User not authorised");
   }
@@ -72,18 +69,14 @@ const deleteTask = asyncHandler(async (req, res) => {
     throw new Error("Task not found");
   }
 
-  // find user making request to update and assign as user
-  const user = await User.findById(req.user.id);
-
-  
   // check for user if its an existing user in our database
-  if (!user) {
+  if (!req.user) {
     res.status(401);
     throw new Error("User not found");
   }
 
   // check if the user matches the task. Make sure the logged in user matches the task user
-  if (task.user.toString() !== user.id) {
+  if (task.user.toString() !== req.user.id) {
     res.status(401);
     throw new Error("User not authorised");
   }
