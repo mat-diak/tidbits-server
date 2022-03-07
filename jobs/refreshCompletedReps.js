@@ -4,7 +4,7 @@ const Task = require("../models/taskModel");
 const refreshCompletedReps = async () => {
   schedule.scheduleJob('*/5 * * * * *', async () => {
     await Task.updateMany({}, {completedReps: 0})
-    console.log(`Cleared tasks completedReps`.magenta.underline)
+    console.log(`Job completed: cleared tasks completedReps`.magenta.underline)
   })
 }
 
