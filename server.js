@@ -5,10 +5,15 @@ const {errorHandler} = require('./middleware/errorMiddleware')
 const connectDB = require('./config/db')
 const port = process.env.PORT || 5000
 const cors = require('cors')
+const refreshCompletedReps = require('./models/scheduler') 
 
 connectDB();
 
-// initialises express
+
+// Jobs
+// Deletes completedReps everyday, every 5s for now
+refreshCompletedReps()
+
 const app = express();
 
 app.use(cors({
