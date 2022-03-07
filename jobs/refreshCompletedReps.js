@@ -2,7 +2,7 @@ const schedule = require('node-schedule')
 const Task = require("../models/taskModel");
 
 const refreshCompletedReps = async () => {
-  schedule.scheduleJob('*/1 * * * *', async () => {
+  schedule.scheduleJob('0 0 * * *', async () => {
     // get all tasks completed reps
     // add them to history array
     await Task.updateMany({}, {completedReps: 0})
