@@ -1,5 +1,5 @@
 const schedule = require('node-schedule')
-const Task = require("./taskModel");
+const Task = require("../models/taskModel");
 
 const refreshCompletedReps = async () => {
   schedule.scheduleJob('*/5 * * * * *', async () => {
