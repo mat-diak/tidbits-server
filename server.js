@@ -12,6 +12,7 @@ connectDB();
 
 ////////////////////////////////////////////////////////
 // CODE FOR SEEDING DATA //
+
 const seedPremadeTasks = [
   {
     text: "Recipe: choice of 5 options",
@@ -26,6 +27,11 @@ const seedPremadeTasks = [
   {
     text: "Dr Says: Drink 8 glasses of water",
     targetReps: 8,
+    completedReps: 0,
+  },
+  {
+    text: "Dr Says: Sleep 8 hours a day",
+    targetReps: 1,
     completedReps: 0,
   },
 ];
@@ -51,6 +57,7 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.use("/api/premadetasks", require("./routes/premadeTaskRoutes"));
 app.use("/api/tasks", require("./routes/taskRoutes"));
 app.use("/api/users", require("./routes/userRoutes"));
 
