@@ -19,15 +19,28 @@ const createTask = asyncHandler(async (req, res) => {
     throw new Error("Please add a text field");
   }
 
+  Date.prototype.addDays = function (days) {
+    var date = new Date(this.valueOf());
+    date.setDate(date.getDate() + days);
+    return date;
+  };
+
+  let endDate = new Date();
+  // makes the date in the future
+  req.body.endInDays
+    ? endDate.setDate(endDate.getDate() + parseInt(req.body.endInDays))
+    : (endDate = null);
+
   const task = await Task.create({
     text: req.body.text,
     targetReps: req.body.targetReps,
     completedReps: req.body.completedReps,
-    user: req.user.id
-  })
+    user: req.user.id,
+    endDate: endDate,
+  });
 
-  res.json(task)
-})
+  res.json(task);
+});
 
 // @desc Update task
 // @route PUT /api/tasks/:id

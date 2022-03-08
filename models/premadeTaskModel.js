@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
-const taskSchema = mongoose.Schema(
+const premadeTaskSchema = mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
+      required: false,
       ref: "User",
     },
     text: {
@@ -19,13 +19,10 @@ const taskSchema = mongoose.Schema(
       type: Number,
       required: [true, "Please add completedReps"],
     },
-    endDate: {
-      type: Date,
-    },
   },
   {
     timestamps: true,
   }
 );
 
-module.exports = mongoose.model("Task", taskSchema);
+module.exports = mongoose.model("premadeTask", premadeTaskSchema);
