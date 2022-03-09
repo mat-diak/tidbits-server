@@ -43,7 +43,7 @@ const seedPremadeTasks = [
     ],
   },
   {
-    text: "Listen: 2 daily news options",
+    text: "Listen: two daily news options",
     targetReps: 2,
     completedReps: 0,
     options: [
@@ -58,7 +58,7 @@ const seedPremadeTasks = [
     ],
   },
   {
-    text: "Read: 2 news articles on politics",
+    text: "Read: two news articles on politics",
     targetReps: 2,
     completedReps: 0,
     options: [
@@ -99,7 +99,7 @@ const seedPremadeTasks = [
     ],
   },
   {
-    text: "Read: 3 news articles on sports",
+    text: "Read: three news articles on sports",
     targetReps: 3,
     completedReps: 0,
     options: [
@@ -118,7 +118,7 @@ const seedPremadeTasks = [
     ],
   },
   {
-    text: "Read: 5 news articles on shares",
+    text: "Read: five news articles on shares",
     targetReps: 5,
     completedReps: 0,
     options: [
@@ -145,7 +145,7 @@ const seedPremadeTasks = [
     ],
   },
   {
-    text: "Recipe: get one healthy burger  recipe ",
+    text: "Recipe: get one healthy burger recipe ",
     targetReps: 1,
     completedReps: 0,
     options: [
@@ -171,7 +171,7 @@ const seedPremadeTasks = [
     ],
   },
   {
-    text: "Dr Says: 1 full body workout",
+    text: "Dr Says: one full body workout a day",
     targetReps: 1,
     completedReps: 0,
     options: [
