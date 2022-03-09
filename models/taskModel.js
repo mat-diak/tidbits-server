@@ -20,7 +20,7 @@ const taskSchema = mongoose.Schema(
       required: [true, "Please add completedReps"],
     },
     options: {
-      type: [String],
+      type: Object,
     },
     endDate: {
       type: Date,

@@ -12,8 +12,12 @@ const getRecipes = asyncHandler(async (req, res) => {
   const getFiveRecipes = () => {
     return response.data.hits
       .slice(0, 5)
-      .map((data) => data.recipe.url)
+      .map((data) => ({name: data.recipe.label,
+        url: data.recipe.url,}))
+        
   }
+
+  console.log(response.data.hits[0].recipe.label)
 
   const task = await Task.create({
     text: req.body.text,
