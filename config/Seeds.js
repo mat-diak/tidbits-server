@@ -8,7 +8,7 @@ const seedPremadeTasks = [
     text: "Recipe: choice of 5 options",
     targetReps: 1,
     completedReps: 0,
-    options: ["array item 1", "array item 2", "array item 3"],
+    options: ["array item 4", "array item 5", "array item 6"],
   },
   {
     text: "Read: 3 articles a day",
