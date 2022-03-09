@@ -14,7 +14,6 @@ const getRecipes = asyncHandler(async (req, res) => {
       .slice(0, 5)
       .map((data) => ({name: data.recipe.label,
         url: data.recipe.url,}))
-        
   }
 
   const task = await Task.create({
