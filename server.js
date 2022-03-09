@@ -22,11 +22,13 @@ const seedPremadeTasks = [
     text: "Recipe: choice of 5 options",
     targetReps: 1,
     completedReps: 0,
+    options: ["Chicken", "Pizza", "Potato salad", "Daal", "Lettuce Sandwich"],
   },
   {
     text: "Read: 3 articles a day",
     targetReps: 3,
     completedReps: 0,
+    options: ["News Paper", "Magazine", "Book", "Daal"],
   },
   {
     text: "Dr Says: Drink 8 glasses of water",

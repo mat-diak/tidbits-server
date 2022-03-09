@@ -19,6 +19,10 @@ const premadeTaskSchema = mongoose.Schema(
       type: Number,
       required: [true, "Please add completedReps"],
     },
+    options: {
+      type: Array,
+      // required: [true, "Please add Options"],
+    },
   },
   {
     timestamps: true,
