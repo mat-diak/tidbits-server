@@ -1,27 +1,26 @@
 const asyncHandler = require("express-async-handler");
-const axios = require('axios');
+const axios = require("axios");
 const Task = require("../models/taskModel");
 
 // @desc Get tasks
 // @route GET /api/premadetasks
 const getRecipes = asyncHandler(async (req, res) => {
-  const response = await axios.get(process.env.RECIPE_API)
+  const response = await axios.get(process.env.RECIPE_API);
 
-  console.log(response.data.hits[0].recipe)
+  console.log(response.data.hits[0].recipe);
 
   const getFiveRecipes = () => {
     return response.data.hits
       .slice(0, 5)
-      .map((data) => ({name: data.recipe.label,
-        url: data.recipe.url,}))
-  }
+      .map((data) => ({ name: data.recipe.label, url: data.recipe.url }));
+  };
 
   const task = await Task.create({
     text: req.body.text,
     targetReps: req.body.targetReps,
     completedReps: req.body.completedReps,
     user: req.user.id,
-    options: getFiveRecipes()
+    options: getFiveRecipes(),
   });
 
   res.status(200).json(task);
