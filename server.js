@@ -27,6 +27,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/api/premadetasks", require("./routes/premadeTaskRoutes"));
 app.use("/api/tasks", require("./routes/taskRoutes"));
 app.use("/api/users", require("./routes/userRoutes"));
+app.use("/api/recipes", require("./routes/recipeRoutes"));
 
 app.use(errorHandler);
 

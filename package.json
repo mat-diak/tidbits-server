@@ -10,6 +10,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.26.1",
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
@@ -19,7 +20,8 @@
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.4",
-    "node-schedule": "^2.1.0"
+    "node-schedule": "^2.1.0",
+    "serve": "^13.0.2"
   },
   "devDependencies": {
     "jest": "^27.5.1",
