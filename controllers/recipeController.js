@@ -7,7 +7,7 @@ const Task = require("../models/taskModel");
 const getRecipes = asyncHandler(async (req, res) => {
   const response = await axios.get(process.env.RECIPE_API)
 
-  // console.log(response.data.hits[0].recipe.url)
+  console.log(response.data.hits[0].recipe)
 
   const getFiveRecipes = () => {
     return response.data.hits
@@ -17,8 +17,6 @@ const getRecipes = asyncHandler(async (req, res) => {
         
   }
 
-  console.log(response.data.hits[0].recipe.label)
-
   const task = await Task.create({
     text: req.body.text,
     targetReps: req.body.targetReps,
@@ -26,7 +24,6 @@ const getRecipes = asyncHandler(async (req, res) => {
     user: req.user.id,
     options: getFiveRecipes()
   });
-
 
   res.status(200).json(task);
 });
