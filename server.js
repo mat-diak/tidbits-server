@@ -28,7 +28,7 @@ const seedPremadeTasks = [
     text: "Read: 3 articles a day",
     targetReps: 3,
     completedReps: 0,
-    options: ["News Paper", "Magazine", "Book", "Daal"],
+    options: ["News Paper", "Magazine", "Book"],
   },
   {
     text: "Dr Says: Drink 8 glasses of water",
