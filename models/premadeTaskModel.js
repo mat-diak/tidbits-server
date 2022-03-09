@@ -21,7 +21,6 @@ const premadeTaskSchema = mongoose.Schema(
     },
     options: {
       type: Array,
-      // required: [true, "Please add Options"],
     },
   },
   {

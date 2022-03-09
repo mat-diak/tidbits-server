@@ -2,17 +2,13 @@ const express = require("express");
 const dotenv = require("dotenv").config();
 const colors = require("colors");
 const { errorHandler } = require("./middleware/errorMiddleware");
+const premadeTask = require("./models/premadeTaskModel");
+
 const connectDB = require("./config/db");
 const port = process.env.PORT || 5000;
 const cors = require("cors");
-const refreshCompletedReps = require("./jobs/refreshCompletedReps");
-const premadeTask = require("./models/premadeTaskModel");
 
 connectDB();
-
-// Jobs
-// Deletes completedReps everyday, every 5s for now
-refreshCompletedReps();
 
 ////////////////////////////////////////////////////////
 // CODE FOR SEEDING DATA //
@@ -22,13 +18,13 @@ const seedPremadeTasks = [
     text: "Recipe: choice of 5 options",
     targetReps: 1,
     completedReps: 0,
-    options: ["Chicken", "Pizza", "Potato salad", "Daal", "Lettuce Sandwich"],
+    options: ["array item 1", "array item 2", "array item 3"],
   },
   {
     text: "Read: 3 articles a day",
     targetReps: 3,
     completedReps: 0,
-    options: ["News Paper", "Magazine", "Book", "Daal"],
+    options: ["array item 1", "array item 2", "array item 3"],
   },
   {
     text: "Dr Says: Drink 8 glasses of water",

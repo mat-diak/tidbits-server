@@ -37,6 +37,7 @@ const createTask = asyncHandler(async (req, res) => {
     completedReps: req.body.completedReps,
     user: req.user.id,
     endDate: endDate,
+    options: req.body.options,
   });
 
   res.json(task);
