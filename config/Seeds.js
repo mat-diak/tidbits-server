@@ -156,7 +156,7 @@ const seedPremadeTasks = [
     ],
   },
   {
-    text: "Read: 2 opinion pieces",
+    text: "Read: two opinion pieces",
     targetReps: 2,
     completedReps: 0,
     options: [
