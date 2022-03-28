@@ -44,7 +44,7 @@ describe('POST /api/tasks', () => {
         .send({
           text: 'Some text'
         })
-      expect(response.statusCode).toBe(200)
+      expect(response.statusCode).toBe(20)
     })
 
     // should specify json in the content header 
