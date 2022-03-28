@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js",
-    "test": "jest --passWithNoTests"
+    "test": "jest --coverage"
   },
   "license": "MIT",
   "dependencies": {
