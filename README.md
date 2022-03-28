@@ -26,6 +26,12 @@ To access on http://localhost:5000/ :
   > npm run server
 ```
 
+To run tests
+
+```
+npm test
+```
+
 3. If you wanna start the client side as well head to:
    https://github.com/mikitaro-27/snacks-client
 
