@@ -28,6 +28,5 @@ jobs:
       - run: npm ci
       - run: npm run build --if-present     
       - run: sudo docker run -d -p 27017:27017 mongo:latest
+      - run: echo ${{ secrets.HELLO }}
       - run: npm test
-        env: # Or as an environment variable
-        JWT_SECRET: ${{ secrets.JWT_SECRET }}
