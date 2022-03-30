@@ -9,7 +9,7 @@ const axios = require('axios')
 describe('POST /api/tasks', () => {
 
   beforeAll(async () => {
-    await connectDB(process.env.MONGO_TEST_URI);
+    await connectDB();
     await User.create({
       name: 'username',
       password: '123456',
