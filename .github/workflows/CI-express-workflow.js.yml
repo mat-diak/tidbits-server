@@ -15,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -30,4 +30,4 @@ jobs:
       - run: sudo docker run -d -p 27017:27017 mongo:latest
       - run: npm test
         env:
-         JWT_SECRET: ${{ secrets.SECRET }}
+         JWT_SECRET: ${{ secrets.JWT_SECRET }}
