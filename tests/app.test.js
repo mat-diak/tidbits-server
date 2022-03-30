@@ -10,11 +10,6 @@ describe('POST /api/tasks', () => {
 
   beforeAll(async () => {
     await connectDB();
-    await User.create({
-      name: 'username',
-      password: '123456',
-      email: 'email@gmail.com'
-    })
   });
 
   afterEach(async () => {
