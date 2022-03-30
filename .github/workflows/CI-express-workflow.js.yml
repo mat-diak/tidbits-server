@@ -30,4 +30,4 @@ jobs:
       - run: sudo docker run -d -p 27017:27017 mongo:latest
       - run: npm test
         env: # Or as an environment variable
-        JWT_TOKEN: ${{ secrets.JWTtkn }}
+        JWT_SECRET: ${{ secrets.JWT_SECRET }}
