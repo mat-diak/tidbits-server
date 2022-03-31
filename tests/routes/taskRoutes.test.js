@@ -1,16 +1,24 @@
 const request = require('supertest');
-const app = require('../app.js')
-const mongoDB = require('../config/db')
+const app = require('../../app.js')
+const mongoDB = require('../../config/db')
 const mongoose = require('mongoose');
-const User = require('../models/userModel.js');
+const User = require('../../models/userModel.js');
 const dotenv = require('dotenv').config()
 const axios = require('axios')
 
-
-xdescribe('POST /api/tasks', () => {
+describe('POST /api/tasks', () => {
+  let registerResponse;
 
   beforeAll(async () => {
     await mongoDB.connect();
+  });
+
+  beforeEach(async () => {
+    registerResponse = await request(app).post("/api/users").send({
+      name: 'username',
+      email: 'email2@gmail.com',
+      password: '123456',
+    })
   });
 
   afterEach(async () => {
@@ -28,12 +36,6 @@ xdescribe('POST /api/tasks', () => {
     
     // should response with status 200
     test("should respond with a 200 status code", async () => {
-      const registerResponse = await request(app).post("/api/users").send({
-        name: 'username',
-        email: 'email2@gmail.com',
-        password: '123456',
-      })
-
       const response = await request(app)
       .post("/api/tasks")
         .set('Authorization', 'Bearer ' + registerResponse.body.token)
@@ -48,12 +50,6 @@ xdescribe('POST /api/tasks', () => {
 
   describe('when text is missing', () => {
     test('responds with status 400', async () => {
-      const registerResponse = await request(app).post("/api/users").send({
-        name: 'username',
-        email: 'email2@gmail.com',
-        password: '123456',
-      })
-  
       const response = await request(app)
         .post("/api/tasks")
         .set('Authorization', 'Bearer ' + registerResponse.body.token)
