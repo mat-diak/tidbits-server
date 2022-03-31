@@ -1,6 +1,6 @@
 const request = require('supertest');
 const app = require('../app.js')
-const connectDB = require('../config/db')
+const mongoDB = require('../config/db')
 const mongoose = require('mongoose');
 const User = require('../models/userModel.js');
 const dotenv = require('dotenv').config()
@@ -9,12 +9,7 @@ const axios = require('axios')
 describe('POST /api/tasks', () => {
 
   beforeAll(async () => {
-    await connectDB();
-    await User.create({
-      name: 'username',
-      password: '123456',
-      email: 'email@gmail.com'
-    })
+    await mongoDB.connect();
   });
 
   afterEach(async () => {

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const colors = require("colors");
 
-const connectDB = async () => {
+const connect = async () => {
   let mongoURI;
   if (process.env.NODE_ENV === 'test') {
     mongoURI = 'mongodb://localhost:27017/test'
@@ -18,4 +18,4 @@ const connectDB = async () => {
   }
 };
 
-module.exports = connectDB;
+module.exports = { connect };
