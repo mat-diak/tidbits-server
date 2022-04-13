@@ -6,7 +6,8 @@ const User = require('../models/userModel.js');
 const dotenv = require('dotenv').config()
 const axios = require('axios')
 
-describe('POST /api/tasks', () => {
+
+xdescribe('POST /api/tasks', () => {
 
   beforeAll(async () => {
     await mongoDB.connect();
