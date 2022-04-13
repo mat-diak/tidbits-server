@@ -51,7 +51,7 @@ describe('taskController', () => {
 
         expect(response.body.length).toEqual(1)
         expect(response.statusCode).toEqual(200)
-        expect(response.headers['content-type']).toContain('application/json')
+        expect(response.headers['content-type']).toEqual(expect.stringContaining('application/json'))
       });
 
       describe('when no bearer token', () => {
@@ -105,6 +105,7 @@ describe('taskController', () => {
             text: 'Some text'
           })
         expect(response.statusCode).toBe(401)
+        expect(response.body.message).toEqual('Not authorized, no token')
       });
     });
   

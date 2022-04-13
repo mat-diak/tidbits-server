@@ -7,8 +7,6 @@ const Task = require("../models/taskModel");
 const getRecipes = asyncHandler(async (req, res) => {
   const response = await axios.get(process.env.RECIPE_API);
 
-  console.log(response.data.hits[0].recipe);
-
   const getFiveRecipes = () => {
     return response.data.hits
       .slice(0, 5)
